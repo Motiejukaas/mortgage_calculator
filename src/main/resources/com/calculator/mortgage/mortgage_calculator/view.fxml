@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="560.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.calculator.mortgage.mortgage_calculator.Controller">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="560.0" prefWidth="601.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TextField fx:id="amount" layoutX="14.0" layoutY="30.0" prefHeight="25.0" prefWidth="74.0" promptText="1000" />
+            <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan Amount:" />
+            <TextField fx:id="term_years" layoutX="13.0" layoutY="73.0" prefHeight="25.0" prefWidth="74.0" promptText="1" />
+            <Text layoutX="13.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan Term:" />
+            <TextField fx:id="term_months" layoutX="109.0" layoutY="73.0" prefHeight="25.0" prefWidth="74.0" promptText="10" />
+            <Text layoutX="185.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mos." />
+            <Text layoutX="90.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y." />
+            <TextField fx:id="rate" layoutX="109.0" layoutY="30.0" prefHeight="25.0" prefWidth="74.0" promptText="5.1" />
+            <Text layoutX="109.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yearly Interest Rate:" wrappingWidth="108.0" />
+            <Text layoutX="185.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
+            <Text layoutX="90.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
+            <RadioButton fx:id="annuity" layoutX="14.0" layoutY="111.0" mnemonicParsing="false" text="Annuity">
+               <toggleGroup>
+                  <ToggleGroup fx:id="type" />
+               </toggleGroup></RadioButton>
+            <Button fx:id="loan_calculate" layoutX="13.0" layoutY="141.0" mnemonicParsing="false" onAction="#loanCalculate" text="Calculate" />
+            <RadioButton fx:id="linear" layoutX="109.0" layoutY="111.0" mnemonicParsing="false" selected="true" text="Linear" toggleGroup="$type" />
+            <Button fx:id="delay_calculate" disable="true" layoutX="13.0" layoutY="311.0" mnemonicParsing="false" onAction="#delayCalculate" text="Calculate" />
+            <CheckBox fx:id="delay" layoutX="13.0" layoutY="191.0" mnemonicParsing="false" onAction="#enableDelay" text="Delay" />
+            <TextField fx:id="delay_rate" disable="true" layoutX="14.0" layoutY="276.0" prefHeight="25.0" prefWidth="74.0" promptText="5.1" />
+            <Text disable="true" layoutX="14.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yearly Interest Rate:" wrappingWidth="108.00000000000006" />
+            <Text disable="true" layoutX="90.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
+            <Text disable="true" layoutX="14.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From:" />
+            <Text disable="true" layoutX="67.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mo." />
+            <Text layoutX="100.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration:" />
+            <Text disable="true" layoutX="154.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mo." />
+            <TextField fx:id="delay_duration" disable="true" layoutX="100.0" layoutY="232.0" prefHeight="25.0" prefWidth="51.0" promptText="3" />
+            <TableView fx:id="loan_table" layoutX="253.0" layoutY="11.0" prefHeight="180.0" prefWidth="376.0">
+              <columns>
+                <TableColumn fx:id="month" prefWidth="47.0" sortable="false" text="Month" />
+                <TableColumn fx:id="principal" prefWidth="89.0" sortable="false" text="Principal" />
+                  <TableColumn fx:id="interest" prefWidth="66.79998779296875" sortable="false" text="Interest" />
+                  <TableColumn fx:id="total" prefWidth="83.59994506835938" sortable="false" text="Total" />
+                  <TableColumn fx:id="balance" prefWidth="87.20001220703125" sortable="false" text="Balance" />
+              </columns>
+            </TableView>
+            <LineChart fx:id="payment_chart" animated="false" layoutX="178.0" layoutY="236.0" prefHeight="324.0" prefWidth="453.0">
+              <xAxis>
+                <NumberAxis animated="false" label="Month" prefHeight="40.0" prefWidth="348.0" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis animated="false" label="Total" prefHeight="254.0" prefWidth="42.0" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Button fx:id="export" alignment="CENTER" layoutX="14.0" layoutY="502.0" mnemonicParsing="false" onAction="#exportToFile" prefHeight="44.0" prefWidth="100.0" text="Export to File" />
+            <Text layoutX="254.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter from:" />
+            <Text layoutX="405.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:" />
+            <Button fx:id="filter_apply" layoutX="504.0" layoutY="202.0" mnemonicParsing="false" onAction="#applyFilter" text="Apply" />
+            <Text disable="true" layoutX="369.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mo." />
+            <Text disable="true" layoutX="479.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mo." />
+            <TextField fx:id="delay_from" disable="true" layoutX="13.0" layoutY="232.0" prefHeight="25.0" prefWidth="51.0" promptText="7" />
+            <TextField fx:id="filter_to" layoutX="424.0" layoutY="203.0" prefHeight="25.0" prefWidth="51.0" promptText="5" />
+            <TextField fx:id="filter_from" layoutX="314.0" layoutY="203.0" prefHeight="25.0" prefWidth="51.0" promptText="2" />
+            <Label fx:id="loan_invalid_input" focusTraversable="false" layoutX="84.0" layoutY="145.0" text="Invalid input" textFill="RED" visible="false" />
+            <Label fx:id="delay_invalid_input" focusTraversable="false" layoutX="84.0" layoutY="315.0" text="Invalid input" textFill="RED" visible="false" />
+            <Button fx:id="filter_reset" layoutX="556.0" layoutY="202.0" mnemonicParsing="false" onAction="#resetFilter" text="Reset Filter" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
